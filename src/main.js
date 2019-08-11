@@ -15,21 +15,7 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
-/* Vue.filter('formatDate',function(str){
-  if(!str){return ''}
-  var date = new Date(str)
-  var time = new Date().getTime() - date.getTime()
-  //现在的时间-传入的时间 = 相差的时间（单位 = 毫秒）
-  if(time < 0){
-    return ''
-  }else if(time / 1000 < 30){
-    return '刚刚'
-  }else if(time / 1000 < 60){
-    return parseInt(time / 1000) + '秒前'
-  }else if(time / 60000 < 60){
-    return parseInt(time / 1000) + '秒前'
-  }
-}) */
+// 格式化时间
 Vue.filter('formatDate', function (str) {
     if (!str) return ''
     var date = new Date(str)
@@ -53,6 +39,7 @@ Vue.filter('formatDate', function (str) {
     }
   }
 )
+//处理显示板块的文字
 Vue.filter('tabFormatter',function(post){
   if(post.good === true){
     return '精华'

@@ -1,28 +1,36 @@
 <template>
-    
-    <div class="list-content">
+    <div class="PostList">
+        <!--在数据未返回的时候，显示这个正在加载的gif-->
         <loading v-if="isLoading"></loading>
-        <div class="header" v-else>
-            <span><a href="#" class="active">全部</a></span>
-            <span><a href="#">精华</a></span>
-            <span><a href="#">分享</a></span>
-            <span><a href="#">问答</a></span>
-            <span><a href="#">招聘</a></span>
+        <!--代表我門的主题帖子列表-->
+        <div class="list-content" v-else>
+            <div class="header">
+                <span><a href="#" class="active">全部</a></span>
+                <span><a href="#">精华</a></span>
+                <span><a href="#">分享</a></span>
+                <span><a href="#">问答</a></span>
+                <span><a href="#">招聘</a></span>
+            </div>
+            <ul class="posts">
+                <li class="clearfix" v-for="post in posts" :key="post.id">
+                    <!--头像-->
+                    <img class="user_avatar fl" :src="post.author.avatar_url" alt="用户头像">
+                    <!--回复/浏览-->
+                    <span class="replyAndVisit_count fl">
+                        <span class="reply_count">{{post.reply_count}}</span><span class="count_seperator">/</span><span class="view_count">{{post.visit_count}}</span>
+                    </span>
+                    <!--帖子的分类-->
+                    <span class="classify fl" :class="[{good:(post.good  == true),top:(post.top  == true),
+            other:(post.good  != true && post.top  != true)}]">
+                    {{post | tabFormatter}}
+                    </span>
+                    <!--标题-->
+                    <span class="post-title fl">{{post.title}}</span>
+                    <!--最終回复时间-->
+                    <span class="last_reply fr">{{post.last_reply_at  | formatDate}}</span>
+                </li>
+            </ul>
         </div>
-        <ul class="posts">
-            <li class="clearfix" v-for="post in posts" :key="post.id">
-                <img class="user_avatar fl" :src="post.author.avatar_url" alt="用户头像">
-                <span class="replyAndVisit_count fl">
-                    <span class="reply_count">{{post.reply_count}}</span><span class="count_seperator">/</span><span class="view_count">{{post.visit_count}}</span>
-                </span>
-                <span class="classify fl" :class="[{good:(post.good  == true),top:(post.top  == true),
-        other:(post.good  != true && post.top  != true)}]">
-                   {{post | tabFormatter}}
-                </span>
-                <span class="post-title fl">{{post.title}}</span>
-                <span class="last_reply fr">{{post.last_reply_at  | formatDate}}</span>
-            </li>
-        </ul>
     </div>
 </template>
 <script>
@@ -32,7 +40,7 @@ export default {
     data(){
         return {
             isLoading: false,
-            posts: []
+            posts: [] //代表页面的列表数组
         }
     },
     methods:{
@@ -44,17 +52,17 @@ export default {
             .then(res=>{
                 this.isLoading = false // 加载成功后去除动画
                 this.posts = res.data.data
-                console.log(this.posts)
             })
             .catch(err=>{
+                //处理返回失败后的问题
                 console.log(err)
             })
         }
     },
     // 在 Vue 实例挂载到 DOM 之前获取数据
     beforeMount(){
-        this.isLoading = true
-        this.getData();
+        this.isLoading = true//加载成功之前显示加载动画
+        this.getData();//在页面加载之前获取数据
     },
     components:{
         loading
