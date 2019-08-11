@@ -176,3 +176,5 @@ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focus
     clear: both
 }
 *{box-sizing: border-box;}
+.fl{float: left;}
+.fr{float: right;}
