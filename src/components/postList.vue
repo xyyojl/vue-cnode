@@ -25,7 +25,25 @@
 </template>
 <script>
 export default {
-    name: 'postList'
+    name: 'postList',
+    methods:{
+        getData(){
+            this.$http.get('https://cnodejs.org/api/v1/topics',{
+                limit: 20,
+                page: 1
+            })
+            .then(res=>{
+                console.log(res)
+                console.log(res.data.data)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
+    },
+    beforeMount(){
+        this.getData();
+    }
 }
 </script>
 <style scoped>
@@ -66,7 +84,6 @@ export default {
         color: #9e78c0;
         font-size: 14px;
     }
-    /* count_seperator view_count  view_count post-title last_reply*/
     .posts li .view_count{
         font-size: 10px;
         color: #b4b4b4;
