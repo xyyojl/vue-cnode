@@ -10,17 +10,17 @@
             <span><a href="#">招聘</a></span>
         </div>
         <ul class="posts">
-            <li class="clearfix">
-                <div class="fl">
-                    <img class="user_avatar" src="https://avatars2.githubusercontent.com/u/227713?v=4&s=120" alt="用户头像">
-                    <span>
-                        <span class="reply_count">55</span>
-                        <span class="count_seperator">/</span>
-                        <span class="view_count">110333</span>
-                    </span>
-                    <span class="post-title">Node 12 值得关注的新特性</span>
-                </div>
-                <span class="last_reply fr">3天前</span>
+            <li class="clearfix" v-for="post in posts" :key="post.id">
+                <img class="user_avatar fl" :src="post.author.avatar_url" alt="用户头像">
+                <span class="replyAndVisit_count fl">
+                    <span class="reply_count">{{post.reply_count}}</span><span class="count_seperator">/</span><span class="view_count">{{post.visit_count}}</span>
+                </span>
+                <span class="classify fl" :class="[{good:(post.good  == true),top:(post.top  == true),
+        other:(post.good  != true && post.top  != true)}]">
+                   {{post | tabFormatter}}
+                </span>
+                <span class="post-title fl">{{post.title}}</span>
+                <span class="last_reply fr">{{post.last_reply_at  | formatDate}}</span>
             </li>
         </ul>
     </div>
@@ -31,7 +31,8 @@ export default {
     name: 'postList',
     data(){
         return {
-            isLoading: false
+            isLoading: false,
+            posts: []
         }
     },
     methods:{
@@ -42,8 +43,8 @@ export default {
             })
             .then(res=>{
                 this.isLoading = false // 加载成功后去除动画
-                console.log(res)
-                console.log(res.data.data)
+                this.posts = res.data.data
+                console.log(this.posts)
             })
             .catch(err=>{
                 console.log(err)
@@ -87,12 +88,19 @@ export default {
     .posts li{
         padding: 10px;
         font-size: 14px;
+        /* line-height: 2em; */
     }
     .posts li .user_avatar{
         width: 30px;
         height: 30px;
         border-radius: 3px;
         vertical-align: middle;
+    }
+    .replyAndVisit_count{
+        display: inline-block;
+        width: 70px;
+        text-align: center;
+        padding: 5px 0;
     }
     .posts li .reply_count{
         color: #9e78c0;
@@ -102,10 +110,28 @@ export default {
         font-size: 10px;
         color: #b4b4b4;
     }
+    .posts li .classify{
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-size: 12px;
+        margin: 5px;
+    }
+    .posts li .classify.good,
+    .posts li .classify.top{
+        background: #80BD01;
+        color: #fff;
+    }
+    .posts li .classify.other{
+        background-color: #e5e5e5;
+        color: #999;
+    }
     .posts li .post-title{
         font-size: 16px;
         line-height: 30px;
         max-width: 70%;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
     }
     .posts li .post-title a{
         color: #333;
