@@ -88,7 +88,6 @@ export default {
     .posts li{
         padding: 10px;
         font-size: 14px;
-        /* line-height: 2em; */
     }
     .posts li .user_avatar{
         width: 30px;
