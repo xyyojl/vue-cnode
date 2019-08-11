@@ -77,7 +77,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
     .header{
         background: #F6F6F6;
         padding: 10px 0 10px 10px;
