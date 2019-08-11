@@ -25,7 +25,15 @@
                     {{post | tabFormatter}}
                     </span>
                     <!--标题-->
-                    <span class="post-title fl">{{post.title}}</span>
+                    <router-link :to="{
+                        name: 'post_content',
+                        params:{
+                            id: post.id
+                        }
+                    }">
+                        <span class="post-title fl">{{post.title}}</span>
+                    </router-link>
+                    
                     <!--最終回复时间-->
                     <span class="last_reply fr">{{post.last_reply_at  | formatDate}}</span>
                 </li>
@@ -69,7 +77,7 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style>
     .header{
         background: #F6F6F6;
         padding: 10px 0 10px 10px;
@@ -140,10 +148,14 @@ export default {
         text-overflow:ellipsis;
         white-space: nowrap;
     }
-    .posts li .post-title a{
+    .posts li a{
         color: #333;
+        text-decoration: none;
     }
-    .posts li .post-title a:visited{
+    .posts li a:hover{
+        text-decoration: underline;
+    }
+    .posts li a:visited{
         color: #888;
     }
     .last_reply{

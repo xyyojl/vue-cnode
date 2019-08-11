@@ -6,6 +6,7 @@ import router from './router'
 import Axios from 'axios'
 import './assets/css/reset.min.css'
 
+
 Vue.prototype.$http = Axios;
 Vue.config.productionTip = false
 

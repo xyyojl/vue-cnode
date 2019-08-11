@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <div class="main">
-      <PostList></PostList>
+      <router-view name="main"></router-view>
     </div>
   </div>
 </template>
@@ -19,8 +19,7 @@ export default {
 }
 </script>
 
-<style scoped>
-  /* @import url('assets/css/reset.min.css') */
+<style>
   .main{
     width: 80%;
     margin: 15px auto;
