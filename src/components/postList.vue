@@ -1,6 +1,8 @@
 <template>
+    
     <div class="list-content">
-        <div class="header">
+        <loading v-if="isLoading"></loading>
+        <div class="header" v-else>
             <span><a href="#" class="active">全部</a></span>
             <span><a href="#">精华</a></span>
             <span><a href="#">分享</a></span>
@@ -24,8 +26,14 @@
     </div>
 </template>
 <script>
+import loading from './Loading'
 export default {
     name: 'postList',
+    data(){
+        return {
+            isLoading: false
+        }
+    },
     methods:{
         getData(){
             this.$http.get('https://cnodejs.org/api/v1/topics',{
@@ -33,6 +41,7 @@ export default {
                 page: 1
             })
             .then(res=>{
+                this.isLoading = false // 加载成功后去除动画
                 console.log(res)
                 console.log(res.data.data)
             })
@@ -41,8 +50,13 @@ export default {
             })
         }
     },
+    // 在 Vue 实例挂载到 DOM 之前获取数据
     beforeMount(){
+        this.isLoading = true
         this.getData();
+    },
+    components:{
+        loading
     }
 }
 </script>
