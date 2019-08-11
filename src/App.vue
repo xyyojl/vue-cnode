@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header></Header>
-    <PostList></PostList>
+    <div class="main">
+      <PostList></PostList>
+    </div>
   </div>
 </template>
 
@@ -17,6 +19,10 @@ export default {
 }
 </script>
 
-<style>
-  @import 'assets/css/reset.min.css'
+<style scoped>
+  /* @import url('assets/css/reset.min.css') */
+  .main{
+    width: 80%;
+    margin: 15px auto;
+  }
 </style>

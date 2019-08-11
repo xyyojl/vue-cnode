@@ -70,15 +70,11 @@ export default {
 }
 </script>
 <style scoped>
-    .list-content{
-        width: 910px;
-        margin: 0 auto;
-        border: 1px solid red;
-    }
     .header{
         background: #F6F6F6;
         padding: 10px 0 10px 10px;
         font-size: 14px;
+        border-radius: 3px 3px 0 0;
     }
     .header span a{
         color: #80bd01;
@@ -96,6 +92,10 @@ export default {
     .posts li{
         padding: 10px;
         font-size: 14px;
+        background-color: #fff;
+    }
+    .posts li:hover{
+        background-color: #f5f5f5;
     }
     .posts li .user_avatar{
         width: 30px;
