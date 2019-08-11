@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <cnode-header></cnode-header>
-    <postList></postList>
+    <Header></Header>
+    <PostList></PostList>
   </div>
 </template>
 
 <script>
-import header from './components/header'
-import postList from './components/postList'
+import Header from './components/Header'
+import PostList from './components/PostList'
 export default {
   name: 'App',
   components:{
-    'cnode-header': header,
-    postList
+    Header,
+    PostList
   }
 }
 </script>
