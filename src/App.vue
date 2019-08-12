@@ -20,6 +20,19 @@ export default {
 </script>
 
 <style>
+  /* body{
+    margin: 0;
+    background-color: #e1e1e1;
+  }
+  .clearfix:after {
+      display: block;
+      height: 0;
+      content: "";
+      clear: both
+  }
+  *{box-sizing: border-box;}
+  .fl{float: left;}
+  .fr{float: right;}  */
   .main{
     width: 80%;
     margin: 15px auto;

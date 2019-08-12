@@ -15,7 +15,7 @@
                     <span>• 来自 {{post.tab}}</span>
                 </div>
             </div>
-            <div class="topic_content" v-html="post.content"></div>
+            <div class="topic_content markdown-body" v-html="post.content"></div>
             <div class="reply_panel panel">
                 <div class="header">
                     {{post.replies.length}} 回复
@@ -26,8 +26,8 @@
                         <span>{{reply.author.loginname}}</span>
                         <span>{{(index+1)}}楼•{{reply.create_at  | formatDate}}</span>
                     </div>
-                    <span class="awesome" v-if="reply.ups.length>0"><i>👍</i>{{reply.ups.length}}</span>
-                    <p class="reply_content"  v-html="reply.content"></p>
+                    <span class="awesome" v-if="reply.ups.length>0"><i>👍</i> {{reply.ups.length}}</span>
+                    <p class="reply_content markdown-body"  v-html="reply.content"></p>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@ export default {
 }
 </script>
 <style>
-    @import url('../assets/css/markdown-github.css');
+    @import url('../assets/css/markdown-text.css');
     .topic_header{
         width: 910px;
         color: #333;
@@ -110,12 +110,11 @@ export default {
     }
     .topic_content{
         width: 910px;
-        padding: 10px;
+        padding: 15px;
         border-top: 1px solid #e5e5e5;
         background-color: #fff; 
         margin-bottom: 13px;
     }
-    /* reply_item user_info img */
     .reply_item{
         width: 910px;
         padding: 10px;

@@ -78,6 +78,11 @@ export default {
 }
 </script>
 <style scoped>
+    ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
     .header{
         background: #F6F6F6;
         padding: 10px 0 10px 10px;
@@ -85,8 +90,9 @@ export default {
         border-radius: 3px 3px 0 0;
     }
     .header span a{
-        color: #80bd01;
+        color: #424d2a;
         margin: 0 10px;
+        text-decoration: none;
     }
     .header span:hover a{
         color: #005580;

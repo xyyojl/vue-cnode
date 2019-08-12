@@ -24,6 +24,11 @@ export default {
 }
 </script>
 <style scoped>
+    ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
     .header{
         height: 50px;
         background: #444444;
@@ -75,6 +80,7 @@ export default {
     .nav li a{
         text-shadow: none;
         color: #ccc;
+        text-decoration: none;
     }
     .nav li a:hover{
         color: #fff;
