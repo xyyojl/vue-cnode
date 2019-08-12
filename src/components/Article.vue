@@ -1,5 +1,5 @@
 <template>
-    <div class="article">
+    <div class="article fl">
         <loading v-if="isLoading"></loading>
         <div v-else>
             <div class="topic_header">
@@ -79,13 +79,22 @@ export default {
     },
     components:{
         loading
+    },
+    watch:{
+        '$route'(to,from){
+        // 通过 id 获取文章详情
+        this.getData()
+        }
     }
 }
 </script>
 <style>
     @import url('../assets/css/markdown-text.css');
+    /* .article{
+        margin-right: 305px;
+    } */
     .topic_header{
-        width: 910px;
+        width: 892px;
         color: #333;
         background: #fff;
         padding: 10px;
@@ -114,7 +123,7 @@ export default {
         font-size: 12px;
     }
     .panel .header{
-        width: 910px;
+        width: 892px;
         font-size: 14px;
         color: #333;
         padding: 10px;
@@ -122,14 +131,14 @@ export default {
         border-radius: 3px 3px 0 0;
     }
     .topic_content{
-        width: 910px;
+        width: 892px;
         padding: 15px;
         border-top: 1px solid #e5e5e5;
         background-color: #fff; 
         margin-bottom: 13px;
     }
     .reply_item{
-        width: 910px;
+        width: 892px;
         padding: 10px;
         background: #fff;
         border-top: 1px solid #f0f0f0;

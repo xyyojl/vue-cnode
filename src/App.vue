@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <Header></Header>
-    <div class="main">
+    <div class="main clearfix">
       <router-view name="main"></router-view>
+      <router-view name="sideBar"></router-view>
     </div>
   </div>
 </template>
@@ -34,7 +35,9 @@ export default {
   .fl{float: left;}
   .fr{float: right;}  */
   .main{
-    width: 80%;
+    width: 90%;
+    max-width: 1400px;
+    min-width: 960px;
     margin: 15px auto;
   }
 </style>

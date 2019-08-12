@@ -28,7 +28,8 @@
                     <router-link :to="{
                         name: 'post_content',
                         params:{
-                            id: post.id
+                            id: post.id,
+                            name: post.author.loginname
                         }
                     }">
                         <span class="post-title fl">{{post.title}}</span>
