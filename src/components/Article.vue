@@ -21,9 +21,23 @@
                     {{post.replies.length}} 回复
                 </div>
                 <div class="reply_item clearfix" v-for="(reply,index) in post.replies" :key="reply.id">
-                    <img :src="reply.author.avatar_url" alt="">
+                    <router-link :to="{
+                        name:'user_info',
+                        params: {
+                            name: reply.author.loginname
+                        }
+                    }">
+                        <img :src="reply.author.avatar_url" alt="">
+                    </router-link>
                     <div class="user_info">
-                        <span>{{reply.author.loginname}}</span>
+                        <router-link :to="{
+                            name:'user_info',
+                            params: {
+                                name: reply.author.loginname
+                            }
+                        }">
+                            <span>{{reply.author.loginname}}</span>
+                        </router-link>
                         <span>{{(index+1)}}楼•{{reply.create_at  | formatDate}}</span>
                     </div>
                     <span class="awesome" v-if="reply.ups.length>0"><i>👍</i> {{reply.ups.length}}</span>
@@ -50,7 +64,6 @@ export default {
                 if(res.data.success == true){
                     this.isLoading = false // 加载成功后去除动画
                     this.post = res.data.data
-                    console.log(this.post)
                 }
             })
             .catch(err=>{
