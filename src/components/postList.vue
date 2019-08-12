@@ -40,7 +40,7 @@
                 </li>
                 <li>
                     <!-- 分页 -->
-                    <pagination></pagination>
+                    <pagination @handleList="renderList"></pagination>
                 </li>
             </ul>
             
@@ -55,14 +55,17 @@ export default {
     data(){
         return {
             isLoading: false,
-            posts: [] //代表页面的列表数组
+            posts: [], //代表页面的列表数组
+            postpage:1
         }
     },
     methods:{
         getData(){
             this.$http.get('https://cnodejs.org/api/v1/topics',{
-                limit: 20,
-                page: 1
+                params:{
+                    limit: 20,
+                    page: this.postpage
+                }
             })
             .then(res=>{
                 this.isLoading = false // 加载成功后去除动画
@@ -72,6 +75,11 @@ export default {
                 //处理返回失败后的问题
                 console.log(err)
             })
+        },
+        renderList(value){
+            this.postpage = value;
+            // 重新获取数据
+            this.getData();
         }
     },
     // 在 Vue 实例挂载到 DOM 之前获取数据

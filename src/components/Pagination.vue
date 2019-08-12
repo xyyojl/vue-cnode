@@ -1,27 +1,56 @@
 <template>
   <div class="pagination">
-    <button>首页</button>
-    <button>上一页</button>
+    <button @click="changeBtn">首页</button>
+    <button @click="changeBtn">上一页</button>
+    <button v-if="judge">......</button>
     <button
       v-for="(btn,index) in pageBtns"
       :key="index"
-      :class="[{currentPage:btn == currentPage},pagebtn]"
+      :class="[{currentPage:btn == currentPage}]"
       @click="changeBtn(btn)"
     >{{btn}}</button>
-    <button>下一页</button>
+    <button @click="changeBtn">下一页</button>
   </div>
 </template>
 <script>
+import $ from 'jquery'
 export default {
   name: "Pagination",
   data() {
     return {
       pageBtns: [1, 2, 3, 4, 5, "......"],
-      currentPage: 1
+      currentPage: 1,
+      judge: false
     };
   },
   methods: {
     changeBtn(page) {
+        // page 代表页码
+        if(typeof page !== 'number'){
+            switch(page.target.innerText){
+                case '上一页':
+                    $('button.currentPage').prev().click()
+                    break;
+                case '下一页':
+                    $('button.currentPage').next().click()
+                    break;
+                case '首页':
+                    this.pageBtns = [1, 2, 3, 4, 5, "......"]
+                    this.changeBtn(1)
+                    break;
+                default:
+                    break;
+            }
+            return;
+        }
+
+        if(page>4){
+            this.judge = true
+        }else{
+            this.judge = false
+        }
+
+
       // 让点击的变成当前页
       this.currentPage = page;
       if (page === this.pageBtns[4]) {
@@ -33,6 +62,7 @@ export default {
         //移除最后一个数字
         this.pageBtns.splice(5,1)
       }
+      this.$emit('handleList',this.currentPage);
     }
   }
 };
@@ -56,8 +86,6 @@ button {
   padding: 6px 10px;
   margin: 0 4px;
   font-size: 14px;
-}
-.pagebtn {
 }
 .currentPage {
   color: #fff;
