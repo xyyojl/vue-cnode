@@ -38,12 +38,18 @@
                     <!--最終回复时间-->
                     <span class="last_reply fr">{{post.last_reply_at  | formatDate}}</span>
                 </li>
+                <li>
+                    <!-- 分页 -->
+                    <pagination></pagination>
+                </li>
             </ul>
+            
         </div>
     </div>
 </template>
 <script>
 import loading from './Loading'
+import pagination from './Pagination'
 export default {
     name: 'postList',
     data(){
@@ -74,7 +80,8 @@ export default {
         this.getData();//在页面加载之前获取数据
     },
     components:{
-        loading
+        loading,
+        pagination
     }
 }
 </script>
@@ -109,7 +116,7 @@ export default {
         font-size: 14px;
         background-color: #fff;
     }
-    .posts li:hover{
+    .posts li:not(:last-child):hover{
         background-color: #f5f5f5;
     }
     .posts li .user_avatar{
