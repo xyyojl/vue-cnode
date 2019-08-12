@@ -1,5 +1,5 @@
 <template>
-  <div class="sideBar fr">
+  <div class="sideBar fr" v-if="userInfo">
     <div class="panel authorInfo">
       <div class="panel-header">作者</div>
       <div class="authorDetail">
@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       isLoading: false,
-      userInfo: {}
+      userInfo: null
     };
   },
   methods: {
