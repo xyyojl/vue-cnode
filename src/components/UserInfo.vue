@@ -28,20 +28,22 @@
         </ul>
       </div>
       <div class="panel recent_replies">
-        <div class="panel-header">最近创建的话题</div>
+        <div class="panel-header">最近参与的话题</div>
         <ul class="recent_topics topics">
           <li class="clearfix" v-for="topic in userInfo.recent_replies" :key="topic.id">
             <img class="user_avatar fl" :src="topic.author.avatar_url" alt="用户头像" />
-            <router-link
-              :to="{
-                name: 'post_content',
-                params:{
-                    id: topic.id
-                }
-            }"
-            >
-              <span class="topic-title fl">{{topic.title}}</span>
-            </router-link>
+            <span class="topic-title fl">
+              <router-link
+                :to="{
+                  name: 'post_content',
+                  params:{
+                      id: topic.id
+                  }
+              }"
+              >
+                {{topic.title}}
+              </router-link>
+            </span>
             <span class="last_reply fr">{{topic.last_reply_at | formatDate}}</span>
           </li>
         </ul>
@@ -132,49 +134,22 @@ export default {
   border-radius: 3px;
   vertical-align: middle;
 }
-/* .replyAndVisit_count {
-  display: inline-block;
-  width: 70px;
-  text-align: center;
-  padding: 5px 0;
-}
-.recent_topics li .reply_count {
-  color: #9e78c0;
-  font-size: 14px;
-}
-.recent_topics li .view_count {
-  font-size: 10px;
-  color: #b4b4b4;
-}
-.recent_topics li .classify {
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-size: 12px;
-  margin: 5px;
-}
-.recent_topics li .classify.good,
-.recent_topics li .classify.top {
-  background: #80bd01;
-  color: #fff;
-}
-.recent_topics li .classify.other {
-  background-color: #e5e5e5;
-  color: #999;
-} */
-.topics li .post-title {
+.topics li .topic-title {
   font-size: 16px;
   line-height: 30px;
   max-width: 70%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-left: 10px;
 }
 .topics li a {
-  color: #333;
+  color: #08c;
   text-decoration: none;
 }
 .topics li a:hover {
   text-decoration: underline;
+  color: #005580;
 }
 .topics li a:visited {
   color: #888;
