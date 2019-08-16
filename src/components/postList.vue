@@ -14,10 +14,17 @@
             <ul class="posts">
                 <li class="clearfix" v-for="post in posts" :key="post.id">
                     <!--头像-->
-                    <img class="user_avatar fl" :src="post.author.avatar_url" alt="用户头像">
+                    <router-link :to="{
+                        name:'user_info',
+                        params:{
+                            name:post.author.loginname
+                        }
+                    }">
+                        <img class="user_avatar fl" :title="post.author.loginname" :src="post.author.avatar_url" alt="用户头像">
+                    </router-link>
                     <!--回复/浏览-->
                     <span class="replyAndVisit_count fl">
-                        <span class="reply_count">{{post.reply_count}}</span><span class="count_seperator">/</span><span class="view_count">{{post.visit_count}}</span>
+                        <span class="reply_count" title="回复数">{{post.reply_count}}</span><span class="count_seperator">/</span><span class="view_count" title="点击数">{{post.visit_count}}</span>
                     </span>
                     <!--帖子的分类-->
                     <span class="classify fl" :class="[{good:(post.good  == true),top:(post.top  == true),
@@ -25,15 +32,17 @@
                     {{post | tabFormatter}}
                     </span>
                     <!--标题-->
-                    <router-link :to="{
-                        name: 'post_content',
-                        params:{
-                            id: post.id,
-                            name: post.author.loginname
-                        }
-                    }">
-                        <span class="post-title fl">{{post.title}}</span>
-                    </router-link>
+                    <span class="post-title fl" :title="post.title">
+                        <router-link :to="{
+                            name: 'post_content',
+                            params:{
+                                id: post.id,
+                                name: post.author.loginname
+                            }
+                        }">
+                            {{post.title}}
+                        </router-link>
+                    </span>
                     
                     <!--最終回复时间-->
                     <span class="last_reply fr">{{post.last_reply_at  | formatDate}}</span>

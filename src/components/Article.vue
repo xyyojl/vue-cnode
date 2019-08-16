@@ -10,7 +10,17 @@
                 </div>
                 <div class="topic_info">
                     <span>• 发布于 {{post.last_reply_at | formatDate}}</span>
-                    <span>• 作者 {{post.author.loginname}} </span>
+                    <span>
+                        • 作者 
+                        <router-link :to="{
+                            name:'user_info',
+                            params:{
+                                name:post.author.loginname
+                            }
+                        }">
+                            {{post.author.loginname}} 
+                        </router-link>
+                    </span>
                     <span>• {{post.visit_count}} 次浏览</span>
                     <span>• 来自 {{post.tab}}</span>
                 </div>
@@ -122,6 +132,12 @@ export default {
         color: #838383;
         font-size: 12px;
     }
+    .topic_info a{
+        color: #838383;
+    }
+    .topic_info a:hover{
+        text-decoration: underline;
+    }
     .panel .header{
         width: 892px;
         font-size: 14px;
@@ -152,6 +168,10 @@ export default {
     .reply_item .user_info{
         display: inline-block;
         margin-left: 10px;
+    }
+    .reply_item .user_info a{
+        color: #666;
+        font-weight: 700;
     }
     .reply_item .awesome{
         float: right;
