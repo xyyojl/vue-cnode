@@ -5,11 +5,11 @@
         <!--代表我門的主题帖子列表-->
         <div class="list-content" v-else>
             <div class="header">
-                <span><a href="#" class="active">全部</a></span>
-                <span><a href="#">精华</a></span>
-                <span><a href="#">分享</a></span>
-                <span><a href="#">问答</a></span>
-                <span><a href="#">招聘</a></span>
+                <span><a href="#" @click="changeTab('')" :class="{active:tab === ''}">全部</a></span>
+                <span><a href="#" @click="changeTab('good')" :class="{active:tab === 'good'}">精华</a></span>
+                <span><a href="#" @click="changeTab('share')" :class="{active:tab === 'share'}">分享</a></span>
+                <span><a href="#" @click="changeTab('ask')" :class="{active:tab === 'ask'}">问答</a></span>
+                <span><a href="#" @click="changeTab('job')" :class="{active:tab === 'job'}">招聘</a></span>
             </div>
             <ul class="posts">
                 <li class="clearfix" v-for="post in posts" :key="post.id">
@@ -65,7 +65,8 @@ export default {
         return {
             isLoading: false,
             posts: [], //代表页面的列表数组
-            postpage:1
+            postpage:1,
+            tab:''
         }
     },
     methods:{
@@ -73,7 +74,8 @@ export default {
             this.$http.get('https://cnodejs.org/api/v1/topics',{
                 params:{
                     limit: 20,
-                    page: this.postpage
+                    page: this.postpage,
+                    tab:this.tab
                 }
             })
             .then(res=>{
@@ -89,6 +91,10 @@ export default {
             this.postpage = value;
             // 重新获取数据
             this.getData();
+        },
+        changeTab(value){
+            this.tab = value;
+            this.getData();
         }
     },
     // 在 Vue 实例挂载到 DOM 之前获取数据
@@ -99,6 +105,13 @@ export default {
     components:{
         loading,
         pagination
+    },
+    computed:{
+        tabClasses(){
+            return {
+                // active:
+            }
+        }
     }
 }
 </script>
