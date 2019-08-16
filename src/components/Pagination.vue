@@ -16,12 +16,19 @@
 import $ from 'jquery'
 export default {
   name: "Pagination",
+  props:['tab'],
   data() {
     return {
       pageBtns: [1, 2, 3, 4, 5, "......"],
       currentPage: 1,
       judge: false
     };
+  },
+  watch:{
+    tab(){
+      this.pageBtns = [1, 2, 3, 4, 5, "......"]
+      this.changeBtn(1)
+    }
   },
   methods: {
     changeBtn(page) {

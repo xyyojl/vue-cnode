@@ -49,7 +49,7 @@
                 </li>
                 <li>
                     <!-- 分页 -->
-                    <pagination @handleList="renderList"></pagination>
+                    <pagination @handleList="renderList" :tab="tab"></pagination>
                 </li>
             </ul>
             
