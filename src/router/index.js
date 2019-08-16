@@ -4,7 +4,7 @@ import Article from '../components/Article'
 import PostList from '../components/PostList'
 import UserInfo from '../components/UserInfo'
 import SideBar from '../components/SideBar'
-
+import indexSideBar from '../components/indexSideBar'
 Vue.use(Router)
 
 export default new Router({
@@ -13,7 +13,8 @@ export default new Router({
       name: 'root',
       path: '/',
       components:{
-        main: PostList
+        main: PostList,
+        sideBar: indexSideBar
       }
     },
     {

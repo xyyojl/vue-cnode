@@ -5,17 +5,21 @@
       <router-view name="main"></router-view>
       <router-view name="sideBar"></router-view>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Header from './components/Header'
 import PostList from './components/PostList'
+import Footer from './components/Footer'
+
 export default {
   name: 'App',
   components:{
     Header,
-    PostList
+    PostList,
+    Footer
   }
 }
 </script>
@@ -39,5 +43,6 @@ export default {
     max-width: 1400px;
     min-width: 960px;
     margin: 15px auto;
+    min-height: 600px;
   }
 </style>

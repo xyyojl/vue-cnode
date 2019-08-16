@@ -79,7 +79,7 @@ export default {
   margin-top: 5px;
   margin-bottom: 20px;
   border-radius: 5px;
-  border: 1px solid #888888;
+  border: 1px solid #ccc;
   padding: 6px 20px;
 }
 button {

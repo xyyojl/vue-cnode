@@ -1,5 +1,5 @@
 <template>
-    <div class="PostList">
+    <div class="PostList fl">
         <!--在数据未返回的时候，显示这个正在加载的gif-->
         <loading v-if="isLoading"></loading>
         <!--代表我門的主题帖子列表-->
@@ -105,17 +105,13 @@ export default {
     components:{
         loading,
         pagination
-    },
-    computed:{
-        tabClasses(){
-            return {
-                // active:
-            }
-        }
     }
 }
 </script>
 <style scoped>
+    .list-content{
+        width: 892px;
+    }
     ul{
         list-style: none;
         padding: 0;

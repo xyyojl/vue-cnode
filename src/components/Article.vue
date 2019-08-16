@@ -22,7 +22,7 @@
                         </router-link>
                     </span>
                     <span>• {{post.visit_count}} 次浏览</span>
-                    <span>• 来自 {{post.tab}}</span>
+                    <span>• 来自 {{post.tab | tabFormatter}}</span>
                 </div>
             </div>
             <div class="topic_content markdown-body" v-html="post.content"></div>
