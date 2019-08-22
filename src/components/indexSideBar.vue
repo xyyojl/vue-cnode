@@ -222,4 +222,18 @@ export default {
     .panel-client a:hover{
         text-decoration: underline;
     }
+    /* @media (max-width: 979px){
+        .sideBar{
+            display: none;
+            float: none;
+            position: absolute;
+            right: -100%;
+            top: 0;
+            background-color: #fff;
+            z-index: 999;
+            border: 5px solid #ccc;
+            border-right: 0;
+            transition: .3s right;
+        }
+    } */
 </style>

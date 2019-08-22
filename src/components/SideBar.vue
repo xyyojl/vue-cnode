@@ -151,5 +151,9 @@ export default {
 .panel .recent li a{
     color: #778087;
 }
-/* color: #778087; */
+/* @media (max-width: 979px){
+  .sideBar{
+    display: none;
+  }
+} */
 </style>

@@ -91,5 +91,18 @@ export default {
     .nav li a:hover{
         color: #fff;
     }
+    /* @media (max-width: 979px){
+        .header{
+            height: 100px;
+            width: 100vw;
+        }
+        .container{
+            margin-left: 20px;
+        }
+        .container .nav{
+            float: none;
+            clear: both;
+        }
+    } */
 </style>
 
