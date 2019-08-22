@@ -124,7 +124,7 @@ export default {
         border-radius: 3px 3px 0 0;
     }
     .header span a{
-        color: #424d2a;
+        color: #80bd01;
         margin: 0 10px;
         text-decoration: none;
     }
